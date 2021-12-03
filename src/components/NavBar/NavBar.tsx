@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 function NavBar() {
   return (
     <div className="container">
@@ -20,12 +20,16 @@ function NavBar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <p className="nav-link active" aria-current="page">
-                  Home
-                </p>
+                <Link to="/">
+                  <p className="nav-link active" aria-current="page">
+                    Home
+                  </p>
+                </Link>
               </li>
               <li className="nav-item">
-                <p className="nav-link">Profile</p>
+                <Link to="/profile">
+                  <p className="nav-link">Profile</p>
+                </Link>
               </li>
               <li className="nav-item dropdown">
                 <a
@@ -40,23 +44,19 @@ function NavBar() {
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
-                    <p className="dropdown-item">Login</p>
+                    <Link to="/login">
+                      <p className="dropdown-item">Login</p>
+                    </Link>
                   </li>
                   <li>
-                    <p className="dropdown-item">Register</p>
+                    <Link to="/register">
+                      <p className="dropdown-item">Register</p>
+                    </Link>
                   </li>
                   <li>
                     <hr className="dropdown-divider" />
                   </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
                 </ul>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link disabled">Disabled</a>
               </li>
             </ul>
             <form className="d-flex">
