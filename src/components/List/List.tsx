@@ -31,14 +31,22 @@ function List(props: {
   //       zoom: 8,
   //     });
   //   }
-  const [shopAddedSuccesfully, setShopAddedSuccesfully] = useState("");
+  const [responseMessage, setResponseMessage] = useState("");
+  const [isSucced, setISSucced] = useState("");
   function saveAsAFavourite() {
     addTofavorites(
       data.name,
       data.types[0],
       data.vicinity,
       "61a698e4743bbb430b1ebafe"
-    ).then((res) => setShopAddedSuccesfully(res.data.message));
+    ).then((res) => {
+      if (res.data.succes) {
+        setISSucced("success");
+      } else {
+        setISSucced("fail");
+      }
+      setResponseMessage(res.data.message);
+    });
   }
   return (
     <div className="card">
@@ -62,9 +70,28 @@ function List(props: {
                 Add as a favorite
               </button>
             </div>
-            <div className="col-12 align-self-center">
-              <p>{shopAddedSuccesfully}</p>
-            </div>
+
+            {responseMessage === "" ? (
+              <div></div>
+            ) : (
+              <>
+                {isSucced === "fail" ? (
+                  <div
+                    className="col-12 align-self-center alert alert-warning"
+                    role="alert"
+                  >
+                    <p>{responseMessage}</p>
+                  </div>
+                ) : (
+                  <div
+                    className="col-12 align-self-center alert alert-success"
+                    role="alert"
+                  >
+                    <p>{responseMessage}</p>
+                  </div>
+                )}
+              </>
+            )}
           </div>
         </div>
         <div className="d-grid gap-1">
