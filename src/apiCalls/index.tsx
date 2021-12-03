@@ -1,2 +1,3 @@
 import { getMyLocation, getUserLocation } from "./apiCalls";
-export { getMyLocation, getUserLocation };
+import { addTofavorites } from "./NodeServerCalls";
+export { getMyLocation, getUserLocation, addTofavorites };

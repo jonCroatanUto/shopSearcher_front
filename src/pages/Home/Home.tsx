@@ -53,7 +53,7 @@ function Home() {
                 // <div>{places[0].name}</div>
                 [...places].map((place: any, index) => {
                   return (
-                    <li className="list-group-item ">
+                    <li key={index} className="list-group-item ">
                       <List key={index} data={place} />
                     </li>
                   );
