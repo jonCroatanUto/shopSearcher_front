@@ -3,6 +3,6 @@ const initialState = {
     isSuccedToSavePlace: "",
     responseMessage: "",
   },
-  emptyShop: true,
+  diplayAddToListModal: false,
 };
 export default initialState;

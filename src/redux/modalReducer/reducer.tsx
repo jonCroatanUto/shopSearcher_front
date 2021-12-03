@@ -1,5 +1,5 @@
 import initialState from "./state";
-import { SAVE_FAVORITE, EMPTY_SHOP } from "./types";
+import { SAVE_FAVORITE, DISPLAY_ADD_TO_LIST_MODAL } from "./types";
 interface ActionA {
   type: typeof SAVE_FAVORITE;
   payload: {
@@ -8,7 +8,7 @@ interface ActionA {
   };
 }
 interface ActionB {
-  type: typeof EMPTY_SHOP;
+  type: typeof DISPLAY_ADD_TO_LIST_MODAL;
   payload: boolean;
 }
 
@@ -40,8 +40,8 @@ const modalReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case SAVE_FAVORITE:
       return { ...state, response: action.payload };
-    case EMPTY_SHOP:
-      return { ...state, emptyShop: action.payload };
+    case DISPLAY_ADD_TO_LIST_MODAL:
+      return { ...state, diplayAddToListModal: action.payload };
 
     default:
       return state;

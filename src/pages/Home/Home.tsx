@@ -48,7 +48,7 @@ function Home() {
             <ul className="list-group ">
               {showPlaces ? (
                 [...places].map((place: any, index) => {
-                  console.log(place);
+                  // console.log(place);
                   return (
                     <li key={index} className="list-group-item ">
                       <List key={index} data={place} />

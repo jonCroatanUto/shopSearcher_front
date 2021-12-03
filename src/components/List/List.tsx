@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./local.css";
+import { useLocation } from "react-router";
 import { useDispatch } from "react-redux";
 import { addTofavorites } from "../../apiCalls";
 import {
   responseMessageManagment,
-  isEmptyFavoritesShop,
+  displayAddToListModal,
 } from "../../redux/modalReducer/action";
 
 function List(props: {
@@ -25,6 +26,7 @@ function List(props: {
     types: string[];
   };
 }) {
+  const location = useLocation();
   const { data } = props;
 
   const dispatch = useDispatch();
@@ -45,7 +47,6 @@ function List(props: {
             isSuccedToSavePlace: "succes",
           })
         );
-        dispatch(isEmptyFavoritesShop(false));
       } else {
         dispatch(
           responseMessageManagment({
@@ -56,6 +57,10 @@ function List(props: {
       }
     });
   }
+  function addToAList() {
+    dispatch(displayAddToListModal(true));
+  }
+
   return (
     <div className="card">
       <img className="card-img-top" src={data.icon} />
@@ -70,13 +75,23 @@ function List(props: {
               {/* <p>{data.opening_hours ? "Open now" : "Closed now"}</p> */}
             </div>
             <div className="col-4 align-self-center">
-              <button
-                onClick={saveAsAFavourite}
-                type="button"
-                className="btn btn-outline-success"
-              >
-                Add as a favorite
-              </button>
+              {location.pathname === "/profile" ? (
+                <button
+                  onClick={addToAList}
+                  type="button"
+                  className="btn btn-outline-success"
+                >
+                  Add to a List
+                </button>
+              ) : (
+                <button
+                  onClick={saveAsAFavourite}
+                  type="button"
+                  className="btn btn-outline-success"
+                >
+                  Add as a favorite
+                </button>
+              )}
             </div>
           </div>
         </div>
