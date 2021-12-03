@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./local.css";
+import { useDispatch } from "react-redux";
 import { addTofavorites } from "../../apiCalls";
+import { responseMessageManagment } from "../../redux/modalReducer/action";
 function List(props: {
   data: {
     name: string;
@@ -20,19 +22,8 @@ function List(props: {
   };
 }) {
   const { data } = props;
-  //   const { opening_hours } = data;
-  //   console.log("open hours", opening_hours.open_now);
-  // function seeInMap() {
-  //   let map: google.maps.Map;
 
-  //   function initMap(): void {
-  //     map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-  //       center: { lat: -34.397, lng: 150.644 },
-  //       zoom: 8,
-  //     });
-  //   }
-  const [responseMessage, setResponseMessage] = useState("");
-  const [isSucced, setISSucced] = useState("");
+  const dispatch = useDispatch();
   function saveAsAFavourite() {
     addTofavorites(
       data.name,
@@ -41,11 +32,20 @@ function List(props: {
       "61a698e4743bbb430b1ebafe"
     ).then((res) => {
       if (res.data.succes) {
-        setISSucced("success");
+        dispatch(
+          responseMessageManagment({
+            responseMessage: res.data.message,
+            isSuccedToSavePlace: "succes",
+          })
+        );
       } else {
-        setISSucced("fail");
+        dispatch(
+          responseMessageManagment({
+            responseMessage: res.data.message,
+            isSuccedToSavePlace: "fail",
+          })
+        );
       }
-      setResponseMessage(res.data.message);
     });
   }
   return (
@@ -70,28 +70,6 @@ function List(props: {
                 Add as a favorite
               </button>
             </div>
-
-            {responseMessage === "" ? (
-              <div></div>
-            ) : (
-              <>
-                {isSucced === "fail" ? (
-                  <div
-                    className="col-12 align-self-center alert alert-warning"
-                    role="alert"
-                  >
-                    <p>{responseMessage}</p>
-                  </div>
-                ) : (
-                  <div
-                    className="col-12 align-self-center alert alert-success"
-                    role="alert"
-                  >
-                    <p>{responseMessage}</p>
-                  </div>
-                )}
-              </>
-            )}
           </div>
         </div>
         <div className="d-grid gap-1">
