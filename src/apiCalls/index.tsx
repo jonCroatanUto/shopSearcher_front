@@ -1,2 +1,2 @@
-import { getMyLocation } from "./apiCalls";
-export { getMyLocation };
+import { getMyLocation, getUserLocation } from "./apiCalls";
+export { getMyLocation, getUserLocation };
