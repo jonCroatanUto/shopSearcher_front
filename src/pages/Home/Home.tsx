@@ -13,6 +13,7 @@ function Home() {
   const [coordinates, setCoordinates] = useState(["", ""]);
   const { response } = useSelector((state: RootState) => state.modalReducer);
   useEffect(() => {
+    console.log(response);
     getUserLocation().then((res) => {
       const { data } = res;
       const { longitude, latitude } = data;
@@ -22,39 +23,32 @@ function Home() {
   }, []);
 
   function getNearLocals() {
-    console.log(typeof coordinates[1]);
-    console.log(coordinates[0]);
+    // console.log(typeof coordinates[1]);
+    // console.log(coordinates[0]);
     getMyLocation("restaurant", "1500", coordinates[1], coordinates[0]).then(
       (res) => {
         setPlaces(res.data.results);
-        console.log(places);
-        // setTimeout(() => {
-        setShowPlaces(true);
-        // }, 500);
+
+        setTimeout(() => {
+          setShowPlaces(true);
+        }, 200);
       }
     );
   }
-  function debug() {
-    console.log(places[0].name);
-    console.log(coordinates);
-  }
-  //   console.log(places);
-  //   console.log(coordinates);
+
   return (
     <>
       <div>
         <button onClick={getNearLocals}>home</button>
       </div>
-      <div>
-        <button onClick={debug}>debug</button>
-      </div>
+
       <div className="container">
         <div className="row">
           <div className=" col-md-8 col-xs-12">
             <ul className="list-group ">
               {showPlaces ? (
-                // <div>{places[0].name}</div>
                 [...places].map((place: any, index) => {
+                  console.log(place);
                   return (
                     <li key={index} className="list-group-item ">
                       <List key={index} data={place} />

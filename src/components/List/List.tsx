@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import "./local.css";
 import { useDispatch } from "react-redux";
 import { addTofavorites } from "../../apiCalls";
-import { responseMessageManagment } from "../../redux/modalReducer/action";
+import {
+  responseMessageManagment,
+  isEmptyFavoritesShop,
+} from "../../redux/modalReducer/action";
+
 function List(props: {
   data: {
     name: string;
@@ -29,7 +33,10 @@ function List(props: {
       data.name,
       data.types[0],
       data.vicinity,
-      "61a698e4743bbb430b1ebafe"
+      "61a698e4743bbb430b1ebafe",
+      data.rating,
+      data.user_ratings_total,
+      data.icon
     ).then((res) => {
       if (res.data.succes) {
         dispatch(
@@ -38,6 +45,7 @@ function List(props: {
             isSuccedToSavePlace: "succes",
           })
         );
+        dispatch(isEmptyFavoritesShop(false));
       } else {
         dispatch(
           responseMessageManagment({

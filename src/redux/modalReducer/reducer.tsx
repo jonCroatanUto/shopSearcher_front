@@ -1,11 +1,15 @@
 import initialState from "./state";
-import { SAVE_FAVORITE } from "./types";
-interface Action {
+import { SAVE_FAVORITE, EMPTY_SHOP } from "./types";
+interface ActionA {
   type: typeof SAVE_FAVORITE;
   payload: {
     isSuccedToSavePlace: string;
     responseMessage: string;
   };
+}
+interface ActionB {
+  type: typeof EMPTY_SHOP;
+  payload: boolean;
 }
 
 // interface ActionC {
@@ -30,12 +34,14 @@ interface Action {
 //   type: typeof MOVIES_DETAILS_SHOW;
 //   payload: boolean;
 // }
-// type Action = ActionA | ActionB | ActionC | ActionD;
+type Action = ActionA | ActionB;
 
 const modalReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case SAVE_FAVORITE:
       return { ...state, response: action.payload };
+    case EMPTY_SHOP:
+      return { ...state, emptyShop: action.payload };
 
     default:
       return state;
