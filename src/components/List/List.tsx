@@ -7,9 +7,11 @@ import {
   responseMessageManagment,
   displayAddToListModal,
 } from "../../redux/modalReducer/action";
+import { setShopIdAction } from "../../redux/shopReducer/action";
 
 function List(props: {
   data: {
+    _id: string;
     name: string;
     vicinity: string;
     opening_hours: {
@@ -59,6 +61,7 @@ function List(props: {
   }
   function addToAList() {
     dispatch(displayAddToListModal(true));
+    dispatch(setShopIdAction(data._id));
   }
 
   return (

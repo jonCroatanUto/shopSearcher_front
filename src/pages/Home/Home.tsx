@@ -86,7 +86,7 @@ function Home() {
         </div>
       </div>
 
-      <InputText />
+      {/* <InputText /> */}
 
       <Button />
     </>

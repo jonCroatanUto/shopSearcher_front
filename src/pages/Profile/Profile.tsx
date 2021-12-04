@@ -5,6 +5,7 @@ import { listFavorites } from "../../apiCalls";
 import List from "../../components/List";
 import { RootState } from "../../redux/reducers";
 import { displayAddToListModal } from "../../redux/modalReducer/action";
+import ShopListSelector from "../../components/ShopListSelector";
 function Profile() {
   const dispatch = useDispatch();
   const { diplayAddToListModal } = useSelector(
@@ -28,9 +29,7 @@ function Profile() {
     //     setShowPlaces(true);
     //   }, 200);
   }, []);
-  function send() {
-    dispatch(displayAddToListModal(false));
-  }
+
   return (
     <>
       {emptyShop === "No users" ? (
@@ -54,8 +53,7 @@ function Profile() {
       )}
       {diplayAddToListModal ? (
         <div>
-          isDiplayed
-          <button onClick={send}>hide</button>
+          <ShopListSelector />
         </div>
       ) : (
         <div></div>
