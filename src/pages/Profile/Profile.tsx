@@ -4,9 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { listFavorites } from "../../apiCalls";
 import List from "../../components/List";
 import { RootState } from "../../redux/reducers";
-import { displayAddToListModal } from "../../redux/modalReducer/action";
+import "./profile.css";
 import ShopListSelector from "../../components/ShopListSelector";
+
 function Profile() {
+  const { response } = useSelector((state: RootState) => state.modalReducer);
   const dispatch = useDispatch();
   const { diplayAddToListModal } = useSelector(
     (state: RootState) => state.modalReducer
@@ -15,19 +17,10 @@ function Profile() {
   const [emptyShop, setEmptyShop] = useState();
 
   useEffect(() => {
-    // if (emptyShop) {
-    //   <div>no Shops</div>;
-    // } else {
     listFavorites().then((res) => {
       setEmptyShop(res.data.message);
       SetFavouriteShops(res.data.shops);
     });
-    // }
-    //   setPlaces(res.data.results);
-
-    //   setTimeout(() => {
-    //     setShowPlaces(true);
-    //   }, 200);
   }, []);
 
   return (
@@ -42,11 +35,28 @@ function Profile() {
                 return <List key={index} data={shop} />;
               })}
             </div>
-            <div className=" col-md-6 col-xs-12">
-              <div>My Lists</div>
-              {/* {[...favouriteShops].map((shop: any, index) => {
-                return <List key={index} data={shop} />;
-              })} */}
+            <div className="message col-6 ">
+              {response.responseMessage === "" ? (
+                <div></div>
+              ) : (
+                <>
+                  {response.isSuccedToSavePlace === "fail" ? (
+                    <div
+                      className="col-12 align-self-center alert alert-warning"
+                      role="alert"
+                    >
+                      <p>{response.responseMessage}</p>
+                    </div>
+                  ) : (
+                    <div
+                      className="col-12 align-self-center alert alert-success"
+                      role="alert"
+                    >
+                      <p>{response.responseMessage}</p>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>

@@ -8,10 +8,13 @@ import {
   createNewShoplistApi,
 } from "../../apiCalls";
 import { AnyIfEmpty, useDispatch, useSelector } from "react-redux";
-import { displayAddToListModal } from "../../redux/modalReducer/action";
 import { RootState } from "../../redux/reducers";
 import InputText from "../InputText";
 import "./style.css";
+import {
+  responseMessageManagment,
+  displayAddToListModal,
+} from "../../redux/modalReducer/action";
 
 function PlaylistSelector() {
   const dispatch = useDispatch();
@@ -20,8 +23,6 @@ function PlaylistSelector() {
 
   const [formToCreatePlaylist, setFormToCreatePlaylist] = useState(false);
   const [newShopList, setNewShopList] = useState("");
-
-  const [responseMessage, setResponseMessage] = useState("");
 
   useEffect(() => {
     getAllMyShoplists().then((res) => {
@@ -34,28 +35,52 @@ function PlaylistSelector() {
       }
     });
   }, []);
-  async function createNewPlaylist(e: any) {
+  function createNewPlaylist(e: any) {
     e.preventDefault();
     createNewShoplistApi(newShopList, shopID, userId).then((res) => {
-      setResponseMessage(res.data.message);
+      if (res.data.succes) {
+        dispatch(
+          responseMessageManagment({
+            responseMessage: res.data.message,
+            isSuccedToSavePlace: "succes",
+          })
+        );
+      } else {
+        dispatch(
+          responseMessageManagment({
+            responseMessage: res.data.message,
+            isSuccedToSavePlace: "fail",
+          })
+        );
+      }
       dispatch(displayAddToListModal(false));
     });
     // dispatch(reloadPlaylistFetchAction(true));
     // dispatch(setMyPlaylistModal(false));
   }
   function handleChangeTitle(e: any) {
-    // if (e.target.value === false) {
-    //   e.target.value = true;
-    // }
-    // } else if (e.target.value === true) {
-    //   e.target.value = false;
-    // }
     setNewShopList(e.target.value);
   }
 
   function choseOption(e: any) {
-    addSHopToShoplist(shopID, e.value).then((res) => console.log(res));
-    dispatch(displayAddToListModal(false));
+    addSHopToShoplist(shopID, e.value).then((res) => {
+      if (res.data.succes) {
+        dispatch(
+          responseMessageManagment({
+            responseMessage: res.data.message,
+            isSuccedToSavePlace: "succes",
+          })
+        );
+      } else {
+        dispatch(
+          responseMessageManagment({
+            responseMessage: res.data.message,
+            isSuccedToSavePlace: "fail",
+          })
+        );
+      }
+      dispatch(displayAddToListModal(false));
+    });
   }
 
   const customStyles = {
