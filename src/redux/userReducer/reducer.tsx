@@ -1,16 +1,24 @@
 import initialState from "./state";
-import { FETCH_DATA_USER } from "./types";
+import { FETCH_DATA_USER, RELOAD_USER_DATA } from "./types";
 interface Action {
-  type: typeof FETCH_DATA_USER;
   payload: {
-    userId: string;
+    _id: string;
+    userName: string;
+    email: string;
+    password: string;
+    name: string;
+    lastName: string;
+    adress: string;
   };
+  type: string;
 }
 
 const userReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case FETCH_DATA_USER:
-      return { ...state, userId: action.payload };
+      return { ...state, userData: action.payload };
+    case RELOAD_USER_DATA:
+      return initialState;
 
     default:
       return state;

@@ -1,4 +1,12 @@
 const initialState = {
-  userId: "61a698e4743bbb430b1ebafe",
+  userData: {
+    _id: "",
+    userName: "",
+    email: "",
+    password: "",
+    name: "",
+    lastName: "",
+    adress: "",
+  },
 };
 export default initialState;

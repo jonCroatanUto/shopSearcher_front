@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { listFavorites } from "../../apiCalls";
 import List from "../../components/List";
@@ -8,11 +8,10 @@ import "./profile.css";
 import ShopListSelector from "../../components/ShopListSelector";
 
 function Profile() {
-  const { response } = useSelector((state: RootState) => state.modalReducer);
-  const dispatch = useDispatch();
-  const { diplayAddToListModal } = useSelector(
+  const { response, diplayAddToListModal } = useSelector(
     (state: RootState) => state.modalReducer
   );
+
   const [favouriteShops, SetFavouriteShops] = useState([]);
   const [emptyShop, setEmptyShop] = useState();
 

@@ -8,6 +8,8 @@ import {
   displayAddToListModal,
 } from "../../redux/modalReducer/action";
 import { setShopIdAction } from "../../redux/shopReducer/action";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/reducers";
 
 function List(props: {
   data: {
@@ -30,14 +32,14 @@ function List(props: {
 }) {
   const location = useLocation();
   const { data } = props;
-
+  const { userData } = useSelector((state: RootState) => state.userReducer);
   const dispatch = useDispatch();
   function saveAsAFavourite() {
     addTofavorites(
       data.name,
       data.types[0],
       data.vicinity,
-      "61a698e4743bbb430b1ebafe",
+      userData._id,
       data.rating,
       data.user_ratings_total,
       data.icon
@@ -63,7 +65,9 @@ function List(props: {
     dispatch(displayAddToListModal(true));
     dispatch(setShopIdAction(data._id));
   }
-
+  function singInAlert() {
+    alert("FOR THIS FUNCTIONALITY LOGIN OR REGISTER");
+  }
   return (
     <div className="card">
       <img className="card-img-top" src={data.icon} />
@@ -77,25 +81,37 @@ function List(props: {
               <h4>Adress: {data.vicinity}</h4>
               {/* <p>{data.opening_hours ? "Open now" : "Closed now"}</p> */}
             </div>
-            <div className="col-4 align-self-center">
-              {location.pathname === "/profile" ? (
+            {userData.userName !== "" ? (
+              <div className="col-4 align-self-center">
+                {location.pathname === "/profile" ? (
+                  <button
+                    onClick={addToAList}
+                    type="button"
+                    className="btn btn-outline-success"
+                  >
+                    Add to a List
+                  </button>
+                ) : (
+                  <button
+                    onClick={saveAsAFavourite}
+                    type="button"
+                    className="btn btn-outline-success"
+                  >
+                    Add as a favorite
+                  </button>
+                )}
+              </div>
+            ) : (
+              <div className="col-4 align-self-center">
                 <button
-                  onClick={addToAList}
-                  type="button"
-                  className="btn btn-outline-success"
-                >
-                  Add to a List
-                </button>
-              ) : (
-                <button
-                  onClick={saveAsAFavourite}
+                  onClick={singInAlert}
                   type="button"
                   className="btn btn-outline-success"
                 >
                   Add as a favorite
                 </button>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
         <div className="d-grid gap-1">

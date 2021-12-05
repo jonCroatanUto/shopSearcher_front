@@ -6,6 +6,8 @@ import {
   addSHopToShoplist,
   createNewShoplistApi,
 } from "./NodeServerCalls";
+import { register, login } from "./UserServerCalls";
+
 export {
   getMyLocation,
   getUserLocation,
@@ -14,4 +16,6 @@ export {
   getAllMyShoplists,
   addSHopToShoplist,
   createNewShoplistApi,
+  register,
+  login,
 };

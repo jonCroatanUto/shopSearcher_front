@@ -1,4 +1,5 @@
 import axios from "axios";
+const { REACT_APP_NODE_SERVER_LOCATION } = process.env;
 //interaction with shop collection
 export async function addTofavorites(
   shopName: string,
@@ -11,7 +12,7 @@ export async function addTofavorites(
 ) {
   return axios({
     method: "post",
-    url: `http://localhost:4000/shop/saveShop`,
+    url: `${REACT_APP_NODE_SERVER_LOCATION}shop/saveShop`,
     data: {
       name: shopName,
       businessType: businessType,
@@ -27,7 +28,7 @@ export async function addTofavorites(
 export async function listFavorites() {
   return axios({
     method: "get",
-    url: `http://localhost:4000/shop/`,
+    url: `${REACT_APP_NODE_SERVER_LOCATION}shop/`,
   });
 }
 
@@ -35,14 +36,14 @@ export async function listFavorites() {
 
 export async function getAllMyShoplists() {
   return axios({
-    url: "http://localhost:4000/shopList/",
+    url: `${REACT_APP_NODE_SERVER_LOCATION}shopList/`,
     method: "get",
   });
 }
 export async function addSHopToShoplist(shopId: string, shopListName: string) {
   console.log(shopId);
   return axios({
-    url: "http://localhost:4000/shopList/addShopinList",
+    url: `${REACT_APP_NODE_SERVER_LOCATION}shopList/addShopinList`,
     method: "PATCH",
     data: {
       shopId: shopId,
@@ -56,7 +57,7 @@ export async function createNewShoplistApi(
   owner: string
 ) {
   return axios({
-    url: "http://localhost:4000/shopList/newShopList",
+    url: `${REACT_APP_NODE_SERVER_LOCATION}shopList/newShopList`,
     method: "POST",
     data: {
       shopListName: shopListName,
