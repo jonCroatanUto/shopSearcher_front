@@ -1,4 +1,4 @@
-import { FETCH_DATA_USER } from "./types";
+import { FETCH_DATA_USER, RELOAD_USER_DATA } from "./types";
 
 export const fetchuUserDataAction = (value: {
   _id: string;
@@ -11,4 +11,7 @@ export const fetchuUserDataAction = (value: {
 }) => ({
   type: FETCH_DATA_USER,
   payload: value,
+});
+export const reloadUserDataAction = () => ({
+  type: RELOAD_USER_DATA,
 });

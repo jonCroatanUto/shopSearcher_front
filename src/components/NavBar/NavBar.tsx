@@ -1,11 +1,25 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { RootState } from "../../redux/reducers";
+import { reloadUserDataAction } from "../../redux/userReducer/actions";
 function NavBar() {
+  const dispatch = useDispatch();
+  const { userData } = useSelector((state: RootState) => state.userReducer);
+  function logout() {
+    dispatch(reloadUserDataAction());
+  }
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <div className="navbar-brand">Navbar</div>
+          {userData.userName === "" ? (
+            <Link to="/login" style={{ textDecoration: "none" }}>
+              <div className="navbar-brand">SignIn for more</div>
+            </Link>
+          ) : (
+            <div className="navbar-brand">Welcome {userData.userName}</div>
+          )}
           <button
             className="navbar-toggler"
             type="button"
@@ -27,37 +41,56 @@ function NavBar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/profile" style={{ textDecoration: "none" }}>
-                  <p className="nav-link">Profile</p>
-                </Link>
+                {userData.userName === "" ? (
+                  <p className="nav-link disabled"> profile</p>
+                ) : (
+                  <Link to="/login" style={{ textDecoration: "none" }}>
+                    <p className="navbar-brand">profile</p>
+                  </Link>
+                )}
               </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
+              {userData.userName === "" ? (
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Identify
+                  </a>
+
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <li>
+                      <Link to="/login" style={{ textDecoration: "none" }}>
+                        <p className="dropdown-item">Login</p>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/register" style={{ textDecoration: "none" }}>
+                        <p className="dropdown-item">Register</p>
+                      </Link>
+                    </li>
+
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
+                  </ul>
+                </li>
+              ) : (
+                <button
+                  onClick={logout}
+                  className="btn btn-outline-success"
+                  type="submit"
                 >
-                  Identify
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <Link to="/login" style={{ textDecoration: "none" }}>
-                      <p className="dropdown-item">Login</p>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/register" style={{ textDecoration: "none" }}>
-                      <p className="dropdown-item">Register</p>
-                    </Link>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                </ul>
-              </li>
+                  Log Out
+                </button>
+              )}
             </ul>
             <form className="d-flex">
               <input
