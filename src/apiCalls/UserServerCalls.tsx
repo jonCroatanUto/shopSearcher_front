@@ -1,4 +1,5 @@
 import axios from "axios";
+const { REACT_APP_NODE_SERVER_LOCATION } = process.env;
 export async function register(props: {
   userName: string;
   email: string;
@@ -9,7 +10,7 @@ export async function register(props: {
 }) {
   return axios({
     method: "post",
-    url: ``,
+    url: `${REACT_APP_NODE_SERVER_LOCATION}users/signup`,
     data: {
       userName: props.userName,
       email: props.email,
