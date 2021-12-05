@@ -1,2 +1,17 @@
 import { getMyLocation, getUserLocation } from "./apiCalls";
-export { getMyLocation, getUserLocation };
+import {
+  addTofavorites,
+  listFavorites,
+  getAllMyShoplists,
+  addSHopToShoplist,
+  createNewShoplistApi,
+} from "./NodeServerCalls";
+export {
+  getMyLocation,
+  getUserLocation,
+  addTofavorites,
+  listFavorites,
+  getAllMyShoplists,
+  addSHopToShoplist,
+  createNewShoplistApi,
+};

@@ -1,0 +1,2 @@
+export const SAVE_FAVORITE = "SAVE_FAVORITE";
+export const DISPLAY_ADD_TO_LIST_MODAL = "EMPTY_SHOP";
