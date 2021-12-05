@@ -19,7 +19,7 @@ import {
 function PlaylistSelector() {
   const dispatch = useDispatch();
   const { shopID } = useSelector((state: RootState) => state.shopReducer);
-  const { userId } = useSelector((state: RootState) => state.userReducer);
+  const { userData } = useSelector((state: RootState) => state.userReducer);
 
   const [formToCreatePlaylist, setFormToCreatePlaylist] = useState(false);
   const [newShopList, setNewShopList] = useState("");
@@ -37,7 +37,7 @@ function PlaylistSelector() {
   }, []);
   function createNewPlaylist(e: any) {
     e.preventDefault();
-    createNewShoplistApi(newShopList, shopID, userId).then((res) => {
+    createNewShoplistApi(newShopList, shopID, userData._id).then((res) => {
       if (res.data.succes) {
         dispatch(
           responseMessageManagment({

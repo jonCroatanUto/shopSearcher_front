@@ -1,6 +1,16 @@
 import React, { useState } from "react";
+import { register } from "../../apiCalls";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../redux/reducers";
+import { useNavigate } from "react-router";
+import { responseMessageManagment } from "../../redux/modalReducer/action";
+import { fetchuUserDataAction } from "../../redux/userReducer/actions";
 
 function Register() {
+  const navegate = useNavigate();
+  const dispatch = useDispatch();
+  const { response } = useSelector((state: RootState) => state.modalReducer);
+
   interface RegisterCredentials {
     userName: string;
     email: string;
@@ -29,9 +39,22 @@ function Register() {
       [name]: value,
     });
   }
-  function singIN(e: any) {
+  function singUP(e: any) {
     e.preventDefault();
-    console.log(credentials);
+    register(credentials).then((res) => {
+      console.log(res.data.newUser);
+      if (res.data.succes) {
+        dispatch(fetchuUserDataAction(res.data.newUser));
+        navegate("/");
+      } else {
+        dispatch(
+          responseMessageManagment({
+            responseMessage: res.data.message,
+            isSuccedToSavePlace: "fail",
+          })
+        );
+      }
+    });
   }
 
   return (
@@ -39,7 +62,7 @@ function Register() {
       <div className="row justify-content-md-center">
         <div className="col-md-6">
           <main className="form-signin">
-            <form method="post" onSubmit={singIN}>
+            <form method="post" onSubmit={singUP}>
               <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
               <div className="form-floating">
                 <input
@@ -112,26 +135,29 @@ function Register() {
                 />
                 <label htmlFor="floatingInput">Write your adress</label>
               </div>
-              {/* <svg xmlns="http://www.w3.org/2000/svg">
-                <symbol
-                  id="check-circle-fill"
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                </symbol>
-                <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-                </symbol>
-                <symbol
-                  id="exclamation-triangle-fill"
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                </symbol>
-              </svg> */}
-
+              <div className="col-12">
+                {response.responseMessage === "" ? (
+                  <div></div>
+                ) : (
+                  <>
+                    {response.isSuccedToSavePlace === "fail" ? (
+                      <div
+                        className="col-12 align-self-center alert alert-warning"
+                        role="alert"
+                      >
+                        <p>{response.responseMessage}</p>
+                      </div>
+                    ) : (
+                      <div
+                        className="col-12 align-self-center alert alert-success"
+                        role="alert"
+                      >
+                        <p>{response.responseMessage}</p>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
               <div className="submitbuttons">
                 <button type="submit" className="btn btn-outline-success">
                   singUP
