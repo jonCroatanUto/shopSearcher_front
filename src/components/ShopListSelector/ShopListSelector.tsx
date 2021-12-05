@@ -58,7 +58,7 @@ function PlaylistSelector() {
     // dispatch(reloadPlaylistFetchAction(true));
     // dispatch(setMyPlaylistModal(false));
   }
-  function handleChangeTitle(e: any) {
+  function handleChangeTitle(e: React.ChangeEvent<HTMLInputElement>) {
     setNewShopList(e.target.value);
   }
 

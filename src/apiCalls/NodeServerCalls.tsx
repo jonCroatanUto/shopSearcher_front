@@ -1,4 +1,5 @@
 import axios from "axios";
+
 //interaction with shop collection
 export async function addTofavorites(
   shopName: string,
