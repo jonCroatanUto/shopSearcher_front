@@ -11,12 +11,13 @@ function Profile() {
   const { response, diplayAddToListModal } = useSelector(
     (state: RootState) => state.modalReducer
   );
-
+  const { userData } = useSelector((state: RootState) => state.userReducer);
   const [favouriteShops, SetFavouriteShops] = useState([]);
   const [emptyShop, setEmptyShop] = useState();
 
   useEffect(() => {
-    listFavorites().then((res) => {
+    listFavorites(userData._id).then((res) => {
+      console.log(res);
       setEmptyShop(res.data.message);
       SetFavouriteShops(res.data.shops);
     });

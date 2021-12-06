@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
@@ -8,8 +8,26 @@ import NavBar from "./components/NavBar";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ListShop from "./pages/ListShops/ListShop";
-
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "./redux/reducers";
+import { responseMessageManagment } from "./redux/modalReducer/action";
 function App() {
+  const { response } = useSelector((state: RootState) => state.modalReducer);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (response.isSuccedToSavePlace !== "") {
+      console.log("hola");
+      setTimeout(() => {
+        dispatch(
+          responseMessageManagment({
+            responseMessage: "",
+            isSuccedToSavePlace: "",
+          })
+        );
+      }, 50000);
+    }
+  }, [response]);
+
   return (
     <>
       <NavBar />

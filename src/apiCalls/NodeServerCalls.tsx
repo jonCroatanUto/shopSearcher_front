@@ -25,10 +25,10 @@ export async function addTofavorites(
   });
 }
 
-export async function listFavorites() {
+export async function listFavorites(ownerId: string) {
   return axios({
     method: "get",
-    url: `${REACT_APP_NODE_SERVER_LOCATION}shop/`,
+    url: `${REACT_APP_NODE_SERVER_LOCATION}shop/${ownerId}`,
   });
 }
 
@@ -43,7 +43,7 @@ export async function getAllShoplists() {
 
 export async function getAllMyShoplists(ownerId: string) {
   return axios({
-    url: `${REACT_APP_NODE_SERVER_LOCATION}shopList/myList?ownerId=${ownerId}`,
+    url: `${REACT_APP_NODE_SERVER_LOCATION}shopList/myList/${ownerId}`,
     method: "get",
   });
 }
