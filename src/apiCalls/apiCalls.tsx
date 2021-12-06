@@ -1,5 +1,5 @@
 import axios from "axios";
-const { REACT_APP_ABSTRACT_API } = process.env;
+const { REACT_APP_NODE_SERVER_LOCATION } = process.env;
 export async function getMyLocation(
   businessType: string,
   radius: string,
@@ -8,7 +8,7 @@ export async function getMyLocation(
 ) {
   return axios({
     method: "post",
-    url: "http://localhost:4000/shop/nearlyShops",
+    url: `${REACT_APP_NODE_SERVER_LOCATION}shop/nearlyShops`,
     data: {
       type: businessType,
       latitude: latitude,
@@ -17,10 +17,13 @@ export async function getMyLocation(
     },
   });
 }
+
+//this locate
 export async function getUserLocation() {
   return axios({
-    method: "get",
-    url: `https://ipgeolocation.abstractapi.com/v1/?api_key=${REACT_APP_ABSTRACT_API}`,
+    method: "post",
+    url: `${REACT_APP_NODE_SERVER_LOCATION}users/locateUser`,
+    data: {},
   });
 }
 

@@ -62,15 +62,19 @@ function Home() {
     // console.log(response);
     getUserLocation().then((res) => {
       const { data } = res;
-      const { longitude, latitude } = data;
-      const coordinate = [longitude, latitude];
+      const { location } = data;
+      const { lat, lng } = location;
+      // console.log(data);
+      // const { longitude, latitude } = data;
+      const coordinate = [lng, lat];
+      console.log(coordinate);
       setCoordinates(coordinate);
     });
   }, []);
 
   function getNearLocals() {
-    console.log(radiusOfSearch);
-    console.log(typeOfPlace);
+    // console.log(radiusOfSearch);
+    // console.log(typeOfPlace);
 
     getMyLocation(
       typeOfPlace,
