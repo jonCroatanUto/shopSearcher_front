@@ -1,13 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { RootState } from "../../redux/reducers";
 import { reloadUserDataAction } from "../../redux/userReducer/actions";
 function NavBar() {
+  const navegate = useNavigate();
   const dispatch = useDispatch();
   const { userData } = useSelector((state: RootState) => state.userReducer);
   function logout() {
     dispatch(reloadUserDataAction());
+    navegate("/");
   }
   return (
     <div className="container">
