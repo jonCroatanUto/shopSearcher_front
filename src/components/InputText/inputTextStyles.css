@@ -13,22 +13,23 @@
   /* font-size: 1.5em; */
   border: 0;
   border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 2px solid rgb(0, 0, 0);
   font-family: inherit;
   -webkit-appearance: none;
   padding: 0;
   cursor: text;
-  color: white;
+  color: rgb(35, 136, 1);
 }
 
 .input-field:focus {
   outline: 0;
-  border-bottom: 2px solid var(--yellow);
+  border-bottom: 2px solid rgb(35, 136, 1);
   border-right: hidden;
 }
 
 .input-label {
   letter-spacing: 0.05em;
+  margin: 2%;
 }
 
 .input-field:placeholder-shown + .input-label {
@@ -54,5 +55,5 @@
 .input-field:focus + .input-label {
   transform: translate(0, 0) scale(1);
   cursor: pointer;
-  color: var(--yellow);
+  color: rgb(35, 136, 1);
 }

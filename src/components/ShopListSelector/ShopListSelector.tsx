@@ -123,9 +123,9 @@ function PlaylistSelector() {
               <InputText
                 type="text"
                 id="title"
-                placeholder="new playlist"
+                placeholder="Give a name to new shop list"
                 value={newShopList}
-                label="new playlist"
+                label="new shop list"
                 handleChange={handleChangeTitle}
               />
             </div>
