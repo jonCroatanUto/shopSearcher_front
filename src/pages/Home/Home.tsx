@@ -11,7 +11,7 @@ import Select from "react-select";
 function Home() {
   const [typeOfPlace, setTypeOfPlace] = useState("");
   const [radiusOfSearch, setradiusOfSearch] = useState("");
-  const [places, setPlaces] = useState([{ name: " String " }]);
+  const [places, setPlaces] = useState([]);
   const [showPlaces, setShowPlaces] = useState(false);
   const [coordinates, setCoordinates] = useState(["", ""]);
   const { response } = useSelector((state: RootState) => state.modalReducer);
@@ -142,16 +142,25 @@ function Home() {
           <div className=" col-md-8 col-xs-12">
             <ul className="list-group ">
               {showPlaces ? (
-                [...places].map((place: any, index) => {
-                  // console.log(place);
-                  return (
-                    <li key={index} className="list-group-item ">
-                      <List key={index} data={place} />
+                <>
+                  {places.length === 0 ? (
+                    <li className="list-group-item ">
+                      <h2>There is no results</h2>
+                      <h3>Try to expand the radius</h3>
                     </li>
-                  );
-                })
+                  ) : (
+                    [...places].map((place: any, index) => {
+                      // console.log(place);
+                      return (
+                        <li key={index} className="list-group-item ">
+                          <List key={index} data={place} />
+                        </li>
+                      );
+                    })
+                  )}
+                </>
               ) : (
-                <div>no data</div>
+                <div></div>
               )}
             </ul>
           </div>
