@@ -34,9 +34,16 @@ export async function listFavorites() {
 
 //interaction with shopList collection
 
-export async function getAllMyShoplists() {
+export async function getAllShoplists() {
   return axios({
     url: `${REACT_APP_NODE_SERVER_LOCATION}shopList/`,
+    method: "get",
+  });
+}
+
+export async function getAllMyShoplists(ownerId: string) {
+  return axios({
+    url: `${REACT_APP_NODE_SERVER_LOCATION}shopList/myList?ownerId=${ownerId}`,
     method: "get",
   });
 }

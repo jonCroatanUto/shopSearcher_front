@@ -25,7 +25,7 @@ function PlaylistSelector() {
   const [newShopList, setNewShopList] = useState("");
 
   useEffect(() => {
-    getAllMyShoplists().then((res) => {
+    getAllMyShoplists(userData._id).then((res) => {
       const { shopsList } = res.data;
 
       if (shopsList !== undefined) {

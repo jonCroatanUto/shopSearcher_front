@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
 import { listFavorites } from "../../apiCalls";
 import List from "../../components/List";
 import { RootState } from "../../redux/reducers";
@@ -30,11 +30,17 @@ function Profile() {
         <div className="container">
           <div className="row">
             <div className=" col-md-6 col-xs-12">
+              <h1>All my favorite Places</h1>
               {[...favouriteShops].map((shop: any, index) => {
                 return <List key={index} data={shop} />;
               })}
             </div>
-            <div className="message col-6 ">
+            <div className=" col-md-6 col-xs-12">
+              <Link to="/listShop" style={{ textDecoration: "none" }}>
+                <h1>My list shops</h1>
+              </Link>
+            </div>
+            <div className="message col-12 ">
               {response.responseMessage === "" ? (
                 <div></div>
               ) : (
