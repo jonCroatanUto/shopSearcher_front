@@ -44,7 +44,7 @@ function NavBar() {
                 {userData.userName === "" ? (
                   <p className="nav-link disabled"> profile</p>
                 ) : (
-                  <Link to="/login" style={{ textDecoration: "none" }}>
+                  <Link to="/profile" style={{ textDecoration: "none" }}>
                     <p className="navbar-brand">profile</p>
                   </Link>
                 )}

@@ -2,3 +2,6 @@
   position: fixed;
   margin-left: 50%;
 }
+.submitButton {
+  margin: 5%;
+}

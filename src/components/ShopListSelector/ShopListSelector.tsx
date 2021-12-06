@@ -25,7 +25,7 @@ function PlaylistSelector() {
   const [newShopList, setNewShopList] = useState("");
 
   useEffect(() => {
-    getAllMyShoplists().then((res) => {
+    getAllMyShoplists(userData._id).then((res) => {
       const { shopsList } = res.data;
 
       if (shopsList !== undefined) {
@@ -123,9 +123,9 @@ function PlaylistSelector() {
               <InputText
                 type="text"
                 id="title"
-                placeholder="new playlist"
+                placeholder="Give a name to new shop list"
                 value={newShopList}
-                label="new playlist"
+                label="new shop list"
                 handleChange={handleChangeTitle}
               />
             </div>

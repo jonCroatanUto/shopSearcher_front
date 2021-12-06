@@ -7,6 +7,7 @@ import Profile from "./pages/Profile";
 import NavBar from "./components/NavBar";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import ListShop from "./pages/ListShops/ListShop";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/listShop" element={<ListShop />} />
       </Routes>
     </>
   );
