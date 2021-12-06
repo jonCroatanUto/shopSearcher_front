@@ -64,8 +64,9 @@ function Home() {
       const { data } = res;
       const { location } = data;
       const { lat, lng } = location;
-      // console.log(data);
-      // const { longitude, latitude } = data;
+      //try with a centric place to have more results.
+      //this coordinates locate the user to the center of madrid
+      //const coordinate = [-3.6934, 40.4163];
       const coordinate = [lng, lat];
       console.log(coordinate);
       setCoordinates(coordinate);
