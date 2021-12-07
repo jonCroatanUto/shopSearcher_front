@@ -26,6 +26,5 @@ export async function getUserLocation() {
   return axios({
     method: "post",
     url: `${REACT_APP_NODE_SERVER_LOCATION}users/locateUser`,
-    data: {},
   });
 }

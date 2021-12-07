@@ -63,15 +63,17 @@ function Home() {
   };
 
   useEffect(() => {
-    // console.log(response);
     getUserLocation().then((res) => {
+      console.log("useefect function");
       const { data } = res;
       const { location } = data;
+      console.log(data);
       const { lat, lng } = location;
+
       //try with a centric place to have more results.
       //this coordinates locate the user to the center of madrid
-      //const coordinate = [-3.6934, 40.4163];
-      const coordinate = [lng, lat];
+      //const coordinate = ["-3.6934", "40.4163"];
+      const coordinate = [lat, lng];
       console.log(coordinate);
       setCoordinates(coordinate);
     });
@@ -87,6 +89,7 @@ function Home() {
       coordinates[1],
       coordinates[0]
     ).then((res) => {
+      console.log(coordinates);
       console.log(res.data.results);
       setPlaces(res.data.results);
 
