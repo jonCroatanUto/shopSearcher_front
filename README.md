@@ -1,11 +1,11 @@
 # Shop Searcher
 
-This web app it shows the most near places arround your approximate position.
+This web app it shows the most near places around your approximate position.
 The user can choose about multiple types of places: restaurants, pharmacy, aquarius, gym ...
 The user can choose the search radius.
 The user is allowed to have a profile, and save the favorite places, and order it in folders.
 
-**NOTE**: This repository content just the fornt side of the aplication. In order to used you will need to run the server side located in the this [repository](https://github.com/jonCroatanUto/shopSeracher_back.git)
+**NOTE**: This repository content just the front side of the aplication. In order to used you will need to run the server side located in the this [Backend repository](https://github.com/jonCroatanUto/shopSeracher_back.git)
 
 ### Features
 
@@ -52,7 +52,14 @@ npm install
 - Create an `.env` file in the root folder adding the following variables:
 
 ```
-REACT_APP_GOOGLE_API_KEY= you need a [google api key](https://developers.google.com/maps/documentation/javascript/get-api-key)
+- run the client side app with the comand :
+
+```
+
+npm start
+
+```
+
 REACT_APP_NODE_SERVER_LOCATION=http://localhost:4000/
 ```
 
