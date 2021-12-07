@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import List from "../../components/List";
 import InputText from "../../components/InputText";
-import Button from "../../components/Button";
+
 import { getMyLocation, getUserLocation } from "../../apiCalls";
 import { RootState } from "../../redux/reducers";
 import "./home.css";

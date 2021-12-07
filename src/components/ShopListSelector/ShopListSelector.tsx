@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
-import Button from "../Button";
-import { Checkbox, FormControlLabel } from "@material-ui/core";
 import {
   getAllMyShoplists,
   addSHopToShoplist,
   createNewShoplistApi,
 } from "../../apiCalls";
-import { AnyIfEmpty, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers";
 import InputText from "../InputText";
 import "./style.css";
