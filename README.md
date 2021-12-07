@@ -48,20 +48,18 @@ git clone https://github.com/jonCroatanUto/shopSeracher_front.git
 npm install
 ```
 
-- For this project you should use [movieDB API](https://developers.themoviedb.org/3)
-- Create an `.env` file in the root folder adding the following variables:
-
-```
 - run the client side app with the comand :
 
 ```
-
 npm start
-
 ```
 
+- For this project you should use [movieDB API](https://developers.themoviedb.org/3)
+- Create an `.env` file in the root folder adding the following variables:
+```
 REACT_APP_NODE_SERVER_LOCATION=http://localhost:4000/
 ```
+
 
 ###
 
