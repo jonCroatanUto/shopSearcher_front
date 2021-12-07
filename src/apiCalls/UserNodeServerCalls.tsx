@@ -1,6 +1,8 @@
 import axios from "axios";
 const { REACT_APP_NODE_SERVER_LOCATION } = process.env;
 
+// this file content calls to node server enpoints in order to manage the user credentials
+
 //create new user
 export async function register(props: {
   userName: string;

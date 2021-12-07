@@ -1,5 +1,8 @@
 import axios from "axios";
 const { REACT_APP_NODE_SERVER_LOCATION } = process.env;
+
+// this Calls are point to my node server endpoints and these to the Google apis
+
 export async function getMyLocation(
   businessType: string,
   radius: string,
@@ -18,7 +21,7 @@ export async function getMyLocation(
   });
 }
 
-//this locate
+//this locate the user
 export async function getUserLocation() {
   return axios({
     method: "post",
@@ -26,10 +29,3 @@ export async function getUserLocation() {
     data: {},
   });
 }
-
-// export async function movieDetails(id: number) {
-//   return axios({
-//     method: "GET",
-//     url: `${REACT_APP_API_URL}movie/${id}?api_key=${REACT_APP_API_KEY}`,
-//   });
-// }

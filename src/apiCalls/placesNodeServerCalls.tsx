@@ -1,5 +1,8 @@
 import axios from "axios";
 const { REACT_APP_NODE_SERVER_LOCATION } = process.env;
+
+// this file content calls to node server enpoints in order to manage of the places saved by user
+
 //interaction with shop collection
 export async function addTofavorites(
   shopName: string,
