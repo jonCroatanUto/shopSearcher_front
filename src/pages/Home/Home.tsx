@@ -66,7 +66,7 @@ function Home() {
     getUserLocation().then((res) => {
       const { data } = res;
       // console.log(data);
-
+      console.log(res);
       //manege of response using ipstack API
       //_________________________________//
 
