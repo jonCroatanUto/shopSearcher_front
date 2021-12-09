@@ -29,6 +29,7 @@ export async function getMyLocation(
 //the reponse it's the position of server maquine that's mades my application useless.
 
 //--that's the server endpoint that execute google api call in the server:
+
 // export async function getUserLocation() {
 //   return axios({
 //     method: "post",
@@ -37,7 +38,8 @@ export async function getMyLocation(
 // }
 
 // for now while i dont solve the problem , I will use a not so precise method of geolocate the user:
-//--I will use ipstrack api to get the user coordinates
+//--I will use ipstrack api to get the user coordinates:
+
 export async function getUserLocation() {
   return axios({
     method: "GET",
