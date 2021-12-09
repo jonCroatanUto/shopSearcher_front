@@ -64,17 +64,26 @@ function Home() {
 
   useEffect(() => {
     getUserLocation().then((res) => {
-      console.log("useefect function");
       const { data } = res;
-      const { location } = data;
-      console.log(data);
-      const { lat, lng } = location;
+      // console.log(data);
 
-      //try with a centric place to have more results.
-      //this coordinates locate the user to the center of madrid
-      //const coordinate = ["-3.6934", "40.4163"];
-      const coordinate = [lat, lng];
-      console.log(coordinate);
+      //manege of response using ipstack API
+      //_________________________________//
+
+      const { latitude, longitude } = data;
+      const coordinate = [longitude, latitude];
+
+      //manege with a centric place to have more results
+      //_________________________________//
+      // this coordinates locate the user to the center of madrid
+      // const coordinate = ["-3.6934", "40.4163"];
+
+      //manege of response using geolocation google API
+      //_________________________________//
+      // const { lat, lng } = location;
+      // const coordinate = [lat, lng];
+      // console.log(coordinate);
+
       setCoordinates(coordinate);
     });
   }, []);
