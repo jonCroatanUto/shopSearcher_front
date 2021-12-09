@@ -43,6 +43,6 @@ export async function getMyLocation(
 export async function getUserLocation() {
   return axios({
     method: "GET",
-    url: `http://api.ipstack.com/check?access_key=${REACT_APP_IPSTACK_API}`,
+    url: `https://api.ipstack.com/check?access_key=${REACT_APP_IPSTACK_API}`,
   });
 }
