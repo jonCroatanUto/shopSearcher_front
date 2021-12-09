@@ -5,7 +5,8 @@ The user can choose about multiple types of places: restaurants, pharmacy, aquar
 The user can choose the search radius.
 The user is allowed to have a profile, and save the favorite places, and order it in folders.
 
-**NOTE**: This repository content just the front side of the aplication. In order to used you will need to run the server side located in the this [Backend repository](https://github.com/jonCroatanUto/shopSeracher_back.git)
+**NOTE**: This repository content just the front side of the aplication. [Backend repository](https://github.com/jonCroatanUto/shopSeracher_back.git), the server side it's already deployed, as the data base, so you don't need to run it.
+This front side it's deployed, but have some issues not solved yet..
 
 ### Features
 
@@ -19,7 +20,7 @@ The user is allowed to have a profile, and save the favorite places, and order i
 # Index
 
 - [Shop Searcher](#shop-searcher)
-    - [Features](#features)
+  - [Features](#features)
 - [Index](#index)
   - [🚀 To start](#-to-start)
 - [🦴 Project Structure](#-project-structure)
@@ -56,10 +57,10 @@ npm start
 
 - For this project you should use [movieDB API](https://developers.themoviedb.org/3)
 - Create an `.env` file in the root folder adding the following variables:
+
 ```
 REACT_APP_NODE_SERVER_LOCATION=http://localhost:4000/
 ```
-
 
 ###
 
