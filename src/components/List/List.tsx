@@ -45,7 +45,7 @@ function List(props: {
   const { data } = props;
   const { geometry } = data;
   const { location } = geometry;
-  console.log(data);
+
   const { userData } = useSelector((state: RootState) => state.userReducer);
   const dispatch = useDispatch();
   function saveAsAFavourite() {
