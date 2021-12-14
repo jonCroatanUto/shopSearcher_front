@@ -1,5 +1,5 @@
 import axios from "axios";
-const { REACT_APP_NODE_SERVER_LOCATION, REACT_APP_IPSTACK_API } = process.env;
+const { REACT_APP_NODE_SERVER_LOCATION, REACT_APP_ABSTRACT_API } = process.env;
 
 // this Calls are point to my node server endpoints and these to the Google apis
 
@@ -40,12 +40,16 @@ export async function getMyLocation(
 // for now while i dont solve the problem , I will use a not so precise method of geolocate the user:
 //--I will use ipstrack api to get the user coordinates:
 
+// export async function getUserLocation() {
+//   return axios({
+//     method: "GET",
+//     url: `http://api.ipstack.com/check?access_key=${REACT_APP_IPSTACK_API}`,
+//   });
+// }
+
 export async function getUserLocation() {
   return axios({
     method: "GET",
-    url: `http://api.ipstack.com/check?access_key=${REACT_APP_IPSTACK_API}`,
-    headers: {
-      dataType: "application/json",
-    },
+    url: `https://ipgeolocation.abstractapi.com/v1/?api_key=${REACT_APP_ABSTRACT_API}`,
   });
 }
