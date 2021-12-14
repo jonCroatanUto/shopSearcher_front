@@ -7,14 +7,19 @@ import {
   responseMessageManagment,
   displayAddToListModal,
 } from "../../redux/modalReducer/action";
+import { Icon } from "leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { setShopIdAction } from "../../redux/shopReducer/action";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers";
+import "leaflet/dist/leaflet.css";
+import iconImage from "leaflet/dist/images/marker-icon.png";
 
 function List(props: {
   data: {
     _id: string;
     name: string;
+    geometry: { location: { lat: number; lng: number } };
     vicinity: string;
     opening_hours: {
       open_now: boolean;
@@ -30,8 +35,17 @@ function List(props: {
     types: string[];
   };
 }) {
-  const location = useLocation();
+  const icon = new Icon({
+    iconUrl: iconImage,
+    iconSize: [20, 30],
+  });
+
+  const [seeMap, setSeeMap] = useState(false);
+  const actuaLocation = useLocation();
   const { data } = props;
+  const { geometry } = data;
+  const { location } = geometry;
+  console.log(data);
   const { userData } = useSelector((state: RootState) => state.userReducer);
   const dispatch = useDispatch();
   function saveAsAFavourite() {
@@ -68,6 +82,15 @@ function List(props: {
   function singInAlert() {
     alert("FOR THIS FUNCTIONALITY LOGIN OR REGISTER");
   }
+  function seeInMap() {
+    if (seeMap === false) {
+      setSeeMap(true);
+    } else {
+      setSeeMap(false);
+    }
+  }
+  const lat = location.lat;
+  const lng = location.lng;
   return (
     <div className="card">
       <img className="card-img-top" src={data.icon} />
@@ -83,7 +106,7 @@ function List(props: {
             </div>
             {userData.userName !== "" ? (
               <div className="col-4 align-self-center">
-                {location.pathname === "/profile" ? (
+                {actuaLocation.pathname === "/profile" ? (
                   <button
                     onClick={addToAList}
                     type="button"
@@ -116,14 +139,32 @@ function List(props: {
         </div>
         <div className="d-grid gap-1">
           <button
-            //  onClick={seeInMap}
+            onClick={seeInMap}
             type="button"
             className="btn btn-outline-info"
           >
             See in map
           </button>
-
-          <div id="map"></div>
+          {seeMap ? (
+            <MapContainer
+              center={[lat, lng]}
+              zoom={13}
+              scrollWheelZoom={false}
+              className="map"
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker position={[lat, lng]} icon={icon}>
+                <Popup>
+                  {data.name} <br /> {data.vicinity}
+                </Popup>
+              </Marker>
+            </MapContainer>
+          ) : (
+            <div id="map"></div>
+          )}
         </div>
       </div>
     </div>
