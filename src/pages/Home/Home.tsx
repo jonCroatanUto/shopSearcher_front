@@ -66,8 +66,10 @@ function Home() {
     getUserLocation().then((res) => {
       const { data } = res;
       // console.log(data);
-      console.log(res);
-      //manege of response using ipstack API
+      // console.log(res);
+      //manege of response using ipstrack API
+      //ipstrack free trial is over, now I'm using abstract api
+      //this it locate the user based on the Ip direction of the dispositve
       //_________________________________//
 
       const { latitude, longitude } = data;
@@ -98,7 +100,7 @@ function Home() {
       coordinates[1],
       coordinates[0]
     ).then((res) => {
-      console.log(res.data.results);
+      // console.log(res.data.results);
       setPlaces(res.data.results);
 
       setTimeout(() => {

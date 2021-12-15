@@ -6,8 +6,10 @@ import List from "../../components/List";
 import { RootState } from "../../redux/reducers";
 import "./profile.css";
 import ShopListSelector from "../../components/ShopListSelector";
+import { useLocation } from "react-router";
 
 function Profile() {
+  const actuaLocation = useLocation();
   const { response, diplayAddToListModal } = useSelector(
     (state: RootState) => state.modalReducer
   );
@@ -16,11 +18,13 @@ function Profile() {
   const [emptyShop, setEmptyShop] = useState();
 
   useEffect(() => {
-    listFavorites(userData._id).then((res) => {
-      // console.log(res);
-      setEmptyShop(res.data.message);
-      SetFavouriteShops(res.data.shops);
-    });
+    if (actuaLocation.pathname === "/profile") {
+      listFavorites(userData._id).then((res) => {
+        // console.log(res);
+        setEmptyShop(res.data.message);
+        SetFavouriteShops(res.data.shops);
+      });
+    }
     // eslint-disable-next-line
   }, []);
 
