@@ -93,7 +93,7 @@ function List(props: {
   const lng = location.lng;
   return (
     <div className="card">
-      <img className="card-img-top" src={data.icon} />
+      <img className="card-img-top" alt="type of place icon" src={data.icon} />
       <div className="card-body">
         <div className="container">
           <div className="row">

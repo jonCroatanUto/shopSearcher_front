@@ -13,6 +13,7 @@ function ListShop() {
 
       setMyListShops(shopsList);
     });
+    // eslint-disable-next-line
   }, []);
   return (
     <div className="container">

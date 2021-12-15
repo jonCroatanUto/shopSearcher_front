@@ -27,11 +27,12 @@ function PlaylistSelector() {
       const { shopsList } = res.data;
 
       if (shopsList !== undefined) {
-        shopsList.map((item: any) => {
+        shopsList.foreach((item: any) => {
           makeNewOptions(item.shopListName);
         });
       }
     });
+    // eslint-disable-next-line
   }, []);
   function createNewPlaylist(e: any) {
     e.preventDefault();

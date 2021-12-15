@@ -54,16 +54,15 @@ function NavBar() {
               </li>
               {userData.userName === "" ? (
                 <li className="nav-item dropdown">
-                  <a
+                  <p
                     className="nav-link dropdown-toggle"
-                    href="#"
                     id="navbarDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
                     Identify
-                  </a>
+                  </p>
 
                   <ul
                     className="dropdown-menu"

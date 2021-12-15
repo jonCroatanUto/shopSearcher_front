@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -26,6 +26,7 @@ function App() {
         );
       }, 50000);
     }
+    // eslint-disable-next-line
   }, [response]);
 
   return (
