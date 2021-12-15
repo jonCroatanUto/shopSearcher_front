@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 import { login } from "../../apiCalls";
 import { useNavigate } from "react-router";
 import { RootState } from "../../redux/reducers";
-import {
-  responseMessageManagment,
-  displayAddToListModal,
-} from "../../redux/modalReducer/action";
+import { responseMessageManagment } from "../../redux/modalReducer/action";
 import { fetchuUserDataAction } from "../../redux/userReducer/actions";
 
 function Login() {

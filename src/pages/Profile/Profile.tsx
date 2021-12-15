@@ -17,10 +17,11 @@ function Profile() {
 
   useEffect(() => {
     listFavorites(userData._id).then((res) => {
-      console.log(res);
+      // console.log(res);
       setEmptyShop(res.data.message);
       SetFavouriteShops(res.data.shops);
     });
+    // eslint-disable-next-line
   }, []);
 
   return (
