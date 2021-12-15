@@ -53,6 +53,8 @@ function List(props: {
       data.name,
       data.types[0],
       data.vicinity,
+      location.lat,
+      location.lng,
       userData._id,
       data.rating,
       data.user_ratings_total,
