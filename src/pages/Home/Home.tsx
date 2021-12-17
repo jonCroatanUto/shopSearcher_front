@@ -13,7 +13,7 @@ function Home() {
   const [radiusOfSearch, setradiusOfSearch] = useState("");
   const [places, setPlaces] = useState([]);
   const [showPlaces, setShowPlaces] = useState(false);
-  const [coordinates, setCoordinates] = useState(["", ""]);
+  const [coordinates, setCoordinates] = useState([0, 0]);
   const { response } = useSelector((state: RootState) => state.modalReducer);
   const optionsRadius: any = [
     { value: "100", label: "100 m " },
@@ -63,50 +63,56 @@ function Home() {
   };
 
   useEffect(() => {
-    getUserLocation().then((res) => {
-      const { data } = res;
-      // console.log(data);
-      // console.log(res);
-      //manege of response using ipstrack API
-      //ipstrack free trial is over, now I'm using abstract api
-      //this it locate the user based on the Ip direction of the dispositve
-      //_________________________________//
+    navigator.geolocation.getCurrentPosition(
+      (res) => {
+        const { coords } = res;
+        const { latitude, longitude } = coords;
+        setCoordinates([latitude, longitude]);
+      },
+      (res) => alert(res)
+    );
+    // getUserLocation().then((res) => {
+    //   const { data } = res;
+    //   // console.log(data);
+    //   // console.log(res);
+    //   //manege of response using ipstrack API
+    //   //ipstrack free trial is over, now I'm using abstract api
+    //   //this it locate the user based on the Ip direction of the dispositve
+    //   //_________________________________//
 
-      const { latitude, longitude } = data;
-      const coordinate = [longitude, latitude];
+    //   const { latitude, longitude } = data;
+    //   const coordinate = [longitude, latitude];
 
-      //manege with a centric place to have more results
-      //_________________________________//
-      // this coordinates locate the user to the center of madrid
-      // const coordinate = ["-3.6934", "40.4163"];
+    //   //manege with a centric place to have more results
+    //   //_________________________________//
+    //   // this coordinates locate the user to the center of madrid
+    //   // const coordinate = ["-3.6934", "40.4163"];
 
-      //manege of response using geolocation google API
-      //_________________________________//
-      // const { lat, lng } = location;
-      // const coordinate = [lat, lng];
-      // console.log(coordinate);
+    //   //manege of response using geolocation google API
+    //   //_________________________________//
+    //   // const { lat, lng } = location;
+    //   // const coordinate = [lat, lng];
+    //   // console.log(coordinate);
 
-      setCoordinates(coordinate);
-    });
+    //   setCoordinates(coordinate);
+    // });
   }, []);
 
   function getNearLocals() {
     // console.log(radiusOfSearch);
     // console.log(typeOfPlace);
+    const latitude = String(coordinates[0]);
+    const longitude = String(coordinates[1]);
+    getMyLocation(typeOfPlace, radiusOfSearch, latitude, longitude).then(
+      (res) => {
+        // console.log(res.data.results);
+        setPlaces(res.data.results);
 
-    getMyLocation(
-      typeOfPlace,
-      radiusOfSearch,
-      coordinates[1],
-      coordinates[0]
-    ).then((res) => {
-      // console.log(res.data.results);
-      setPlaces(res.data.results);
-
-      setTimeout(() => {
-        setShowPlaces(true);
-      }, 200);
-    });
+        setTimeout(() => {
+          setShowPlaces(true);
+        }, 200);
+      }
+    );
   }
   function handleChangeTypeOfPlace(e: any) {
     setTypeOfPlace(e.value);
